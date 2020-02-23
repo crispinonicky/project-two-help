@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+<body>
+{{!-- 
+  <nav>
+    <ul>
+      <li id="to-right">
+        <a href="/signup">Signup</a> <span> | </span>
+      </li>
+      <li id="to-right">
+        <a href="/login">Login</a>
+      </li>
+    </ul>
+  </nav> --}}
+
+
+  <nav>
+    {{!-- here we separate the links into divs in order to use flexbox to space the links out to each end of the screen. (auth links to the far right and other links for the app in the far left) --}}
+    <div>
+      <a href="/">Home</a>
+    </div>
+    <div>
+      {{!-- I use conditional rendering here to choose whether to display login and signup or just logout based on the global variable that was set up in the app.js using res.locals.currentUser --}}
+      {{!-- if currentUser exists (a person has logged in), then I just want to show the logout link. Else I will display the login and signup links --}}
+      {{#if currentUser}}
+      <span>Hi, {{ currentUser.firstName }}</span>
+      <a href="/profile"></a>
+      <a href="/logout">Logout</a>
+      {{else}}
+      <a href="/login">Login</a>
+      <a href="/signup">Signup</a>
+      {{/if}}
+    </div>
+  </nav>
+
+  {{{body}}}
+
+  <script src="/javascripts/script.js"></script>
+</body>
+</html>
